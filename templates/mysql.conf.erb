@@ -4,15 +4,17 @@
 # service in Puppet.
 
 <% %w{user dbusername dbpassword dbhost databases backupdir vsname}.each do |v|
-	if send(v)
-		-%><%= v + ' = ' + send(v) + "\n" %><%
-	end
+  if send(v)
+    -%><%= v + ' = ' + send(v) + "\n" %><%
+  end
 end -%>
 
-hotcopy = <%= hotcopy ? 'yes' : 'no' %>
-sqldump = <%= sqldump ? 'yes' : 'no' %>
-compress = <%= compress ? 'yes' : 'no' %>
+hotcopy = <%= @real_hotcopy ? 'yes' : 'no' %>
+sqldump = <%= @real_sqldump ? 'yes' : 'no' %>
+compress = <%= @real_compress ? 'yes' : 'no' %>
+sqldumpoptions = <%= @sqldumpoptions %>
 
-<% if real_configfile %>
-configfile = <%= real_configfile %>
+<% if @configfile %>
+configfile = <%= @configfile %>
 <% end %>
+
