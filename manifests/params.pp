@@ -4,7 +4,6 @@ class backupninja::params {
   $backupdir      = hiera('backupninja::backupdir','/home/backupninja')
   $configdir      = hiera('backupninja::configdir','/etc/backup.d')
   $sandbox_type   = hiera('backupninja::sandbox_type','sftp')
-  $sandbox_tag    = hiera('backupninja::sandbox_tag','default')
   
   $sftp_restricted_group = hiera('backupninja::sftp_restricted_group','sftponly')
 

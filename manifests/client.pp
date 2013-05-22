@@ -44,7 +44,7 @@ class backupninja::client (
       @@backupninja::sandbox::sftp { $thehostname:
         thehostname => $thehostname,
         sandboxuser => $backupninja::params::backup_user,
-        tag         => $backupninja::params::sandbox_tag
+        tag         => $backupninja::params::backup_server
       }
     }
   }

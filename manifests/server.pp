@@ -1,6 +1,6 @@
 class backupninja::server (
   $sandbox_type = $backupninja::params::sandbox_type,     # only sftp supported right now
-  $sandbox_tag = $backupninja::params::sandbox_tag
+  $sandbox_tag = $backupninja::params::backup_server
   ) inherits backupninja::params {
 
   file { $backupninja::params::backupdir: 
