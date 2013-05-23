@@ -17,7 +17,8 @@ class backupninja::client (
 
   $duplicity_defaults = { 
     configdir  => $backupninja::params::configdir,
-    sshoptions => "-oIdentityFile=${backupninja::params::configdir}/.ssh/id_rsa",
+    options    => '--ssh-backend pexpect',
+    sshoptions => "-oIdentityFile=${backupninja::params::configdir}/.ssh/id_rsa -oStrictHostKeychecking=no",
     desthost   => $backupninja::params::backup_server,
     destuser   => $backupninja::params::backup_user,
     destdir    => '/incoming',

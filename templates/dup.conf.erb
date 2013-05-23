@@ -20,13 +20,11 @@
 <% elsif @include.is_a? Array -%>
 <%= @include.map { |i| "include = #{i}" }.join("\n") %>
 <% end -%>
-
 <% if @exclude.is_a? String -%>
 <%= 'exclude = ' + @exclude %>
 <% elsif @exclude.is_a? Array -%>
 <%= @exclude.map { |i| "exclude = #{i}" }.join("\n") %>
 <% end -%>
-
 <% if @vsinclude.is_a? String -%>
 <%= 'vsinclude = ' + @vsinclude %>
 <% elsif @vsinclude.is_a? Array -%>
