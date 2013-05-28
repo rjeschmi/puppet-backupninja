@@ -6,7 +6,8 @@ class backupninja::server (
   file { $backupninja::params::backupdir: 
     ensure => 'directory',
     owner  => 'root',
-    group  => 'root'
+    group  => 'root',
+    mode   => '0750'
   }
   
   case $sandbox_type {
