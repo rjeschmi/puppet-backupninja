@@ -11,6 +11,7 @@ define backupninja::sandbox::sftp (
     ensure  => present,
     comment => "Backupninja Sandbox",
     home    => $homedir,
+    system  => true,
     gid     => $restricted_group
   }   
 
