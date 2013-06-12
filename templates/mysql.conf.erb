@@ -3,7 +3,8 @@
 # the next time Puppet runs.  Please make configuration changes to this
 # service in Puppet.
 <%= 'user = ' + @user if @user %>
-<%= 'dbdbpasswordname = ' + @dbdbpasswordname if @dbdbpasswordname %>
+<%= 'dbusername = ' + @dbusername if @dbusername %>
+<%= 'dbpassword = ' + @dbpassword if @dbpassword %>
 <%= 'dbhost = ' + @dbhost if @dbhost %>
 <%= 'databases = ' + @databases if @databases %>
 <%= 'backupdir = ' + @backupdir if @backupdir %>
