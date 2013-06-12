@@ -34,7 +34,7 @@ class backupninja::client (
   }
 
   if $mysql_conf {
-    create_resouces('backupninja::mysql',$mysql_conf,$mysql_defaults)
+    create_resources('backupninja::mysql',$mysql_conf,$mysql_defaults)
   }
 
   #makes sure variables don't change when they are consumed
