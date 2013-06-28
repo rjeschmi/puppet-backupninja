@@ -33,16 +33,16 @@ define backupninja::sandbox::sftp (
   file { "${homedir}/.ssh":
     ensure => directory,
     owner  => 'root',
-    group  => 'root',
-    mode   => '0755',
+    group  => $restricted_group,
+    mode   => '0750',
     require => File[$homedir]
   }
 
   file { "${homedir}/.ssh/authorized_keys":
     ensure => present,
     owner  => 'root',
-    group  => 'root',
-    mode   => '0644',
+    group  => $restricted_group,
+    mode   => '0440',
     require => File["${homedir}/.ssh"]
   }
 
