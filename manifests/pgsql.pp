@@ -15,17 +15,22 @@
 #   and compress take true/false rather than yes/no.
 # 
 define backupninja::pgsql(
-  $order = 10, $ensure = present, $databases = 'all', $backupdir = false, 
-  $compress = false, $vsname = false)
-{
-  
-  include backupninja::client::defaults
-  file { "${backupninja::client::defaults::configdir}/${order}_${name}.pgsql":
+  $order = 10, 
+  $ensure = present, 
+  $configdir = '/etc/backup.d',
+  $databases = 'all', 
+  $backupdir = false, 
+  $compress = false, 
+  $vsname = false
+  ) {
+
+  $real_compress = str2book($compress)   
+
+  file { "${configdir}/${order}_${name}.pgsql":
     ensure => $ensure,
     content => template('backupninja/pgsql.conf.erb'),
     owner => root,
     group => root,
     mode => 0600,
-    require => File["${backupninja::client::defaults::configdir}"]
   }
 }

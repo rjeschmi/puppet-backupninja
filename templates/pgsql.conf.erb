@@ -3,11 +3,10 @@
 # the next time Puppet runs.  Please make configuration changes to this
 # service in Puppet.
 
-<% %w{databases backupdir vsname}.each do |v|
-	if send(v)
-		-%><%= v + ' = ' + send(v) + "\n" %><%
-	end
-end -%>
+<%= 'databases = ' + @databases if @databases %>
+<%= 'backupdir = ' + @backupdir if @backupdir %>
+<%= 'vsname = ' + @vsname if @vsname %>
 
-compress = <%= compress ? 'yes' : 'no' %>
+
+compress = <%= @real_compress ? 'yes' : 'no' %>
 
