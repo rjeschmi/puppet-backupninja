@@ -3,23 +3,27 @@
 # the next time Puppet runs.  Please make configuration changes to this
 # service in Puppet.
 
-loglevel = <%= loglvl %>
-when = <%= send(:when) %>
-reportemail = <%= reportemail %>
-reportsuccess = <%= reportsuccess ? 'yes' : 'no' %>
-reportwarning = <%= reportwarning ? 'yes' : 'no' %>
-<% if reporthost.is_a? String -%>
-<%= 'reporthost = ' + reporthost %>
+loglevel = <%= @loglvl %>
+when = <%= @when %>
+reportemail = <%= @reportemail %>
+reportsuccess = <%= @real_reportsuccess ? 'yes' : 'no' %>
+reportwarning = <%= @real_reportwarning ? 'yes' : 'no' %>
+<% if @reporthost.is_a? String -%>
+<%= 'reporthost = ' + @reporthost %>
 <% end -%>
-<% if reportuser.is_a? String -%>
-<%= 'reportuser = ' + reportuser %>
+<% if @reportuser.is_a? String -%>
+<%= 'reportuser = ' + @reportuser %>
 <% end -%>
-<% if reportdirectory.is_a? String -%>
-<%= 'reportdirectory = ' + reportdirectory %>
+<% if @reportdir.is_a? String -%>
+<%= 'reportdirectory = ' + @reportdir %>
 <% end -%>
-logfile = <%= logfile %>
-configdirectory = <%= configdir %>
-scriptdirectory = <%= scriptdir %>
-libdirectory = <%= libdir %>
-usecolors = <%= usecolors ? 'yes' : 'no' %>
-vservers = <%= vservers ? 'yes' : 'no' %>
+logfile = <%= @logfile %>
+configdirectory = <%= @configdir %>
+scriptdirectory = <%= @scriptdir %>
+<% if @architecture == "x86_64" -%>
+libdirectory = /usr/lib64/backupninja
+<% else -%>
+libdirectory = /usr/lib/backupninja
+<% end -%>
+usecolors = <%= @real_usecolors ? 'yes' : 'no' %>
+vservers = <%= @real_vservers ? 'yes' : 'no' %>
