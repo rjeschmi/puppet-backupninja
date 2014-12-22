@@ -24,7 +24,7 @@ define backupninja::pgsql(
   $vsname = false
   ) {
 
-  $real_compress = str2book($compress)   
+  $real_compress = str2bool($compress)   
 
   file { "${configdir}/${order}_${name}.pgsql":
     ensure => $ensure,
