@@ -4,7 +4,7 @@ class backupninja::server (
   $backupdir = $backupninja::params::backupdir,
   ) inherits backupninja::params {
 
-  file { ${backupdir}: 
+  file { $backupdir: 
     ensure => 'directory',
     owner  => 'root',
     group  => 'root',
@@ -14,7 +14,7 @@ class backupninja::server (
   case $sandbox_type {
     'sftp' : {
       Backupninja::Sandbox::Sftp <<| tag == $sandbox_tag |>> {
-        sandboxdir       => ${backupdir},
+        sandboxdir       => $backupdir,
         restricted_group => $backupninja::params::sftp_restricted_group
       }
     }
