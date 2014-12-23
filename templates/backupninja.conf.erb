@@ -20,10 +20,6 @@ reportwarning = <%= @real_reportwarning ? 'yes' : 'no' %>
 logfile = <%= @logfile %>
 configdirectory = <%= @configdir %>
 scriptdirectory = <%= @scriptdir %>
-<% if @architecture == "x86_64" -%>
-libdirectory = /usr/lib64/backupninja
-<% else -%>
-libdirectory = /usr/lib/backupninja
-<% end -%>
+libdirectory = /usr/libexec/backupninja
 usecolors = <%= @real_usecolors ? 'yes' : 'no' %>
 vservers = <%= @real_vservers ? 'yes' : 'no' %>
