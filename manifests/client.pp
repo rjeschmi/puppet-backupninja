@@ -1,6 +1,7 @@
 class backupninja::client (
   $duplicity_conf = undef,
-  $mysql_conf = undef
+  $mysql_conf = undef,
+  $pgsql_conf = undef,
   ) inherits backupninja::params {
   
   Class['backupninja::client::package'] ->  Class['backupninja::client::config']
@@ -35,6 +36,9 @@ class backupninja::client (
 
   if $mysql_conf {
     create_resources('backupninja::mysql',$mysql_conf,$mysql_defaults)
+  }
+  if $pgsql_conf {
+    create_resources('backupninja::pgsql', $pgsql_conf)
   }
 
   #makes sure variables don't change when they are consumed
