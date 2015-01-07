@@ -14,7 +14,7 @@
 #   backupninja documentation, with the caveat that hotcopy, sqldump,
 #   and compress take true/false rather than yes/no.
 # 
-define backupninja::pgsql(
+class backupninja::pgsql(
   $order = 10, 
   $ensure = present, 
   $configdir = '/etc/backup.d',
