@@ -16,18 +16,18 @@ class backupninja::client (
   class { 'backupninja::client::package': 
   }
   class { 'backupninja::client::config':
-    configdir => $backupninja::params::configdir
+    configdir => $configdir
   }
   class { 'backupninja::client::sshkeys': 
-    keydir => $backupninja::params::configdir
+    keydir => $configdir
   }
 
   $duplicity_defaults = { 
-    configdir  => $backupninja::params::configdir,
+    configdir  => $configdir,
     options    => '--ssh-backend pexpect',
-    sshoptions => "-oIdentityFile=${backupninja::params::configdir}/.ssh/id_rsa -oStrictHostKeychecking=no",
-    desthost   => $backupninja::params::backup_server,
-    destuser   => $backupninja::params::backup_user,
+    sshoptions => "-oIdentityFile=${configdir}/.ssh/id_rsa -oStrictHostKeychecking=no",
+    desthost   => $backup_server,
+    destuser   => $backup_user,
     destdir    => '/incoming',
     desttype   => 'sftp'
   }
@@ -37,7 +37,7 @@ class backupninja::client (
   }
   
   $mysql_defaults = {
-    configdir  => $backupninja::params::configdir
+    configdir  => $configdir
   }
 
   if $mysql_conf {
@@ -47,12 +47,12 @@ class backupninja::client (
   #makes sure variables don't change when they are consumed
   $thehostname  = "${::fqdn}.bn"
 
-  case $backupninja::params::sandbox_type {
+  case $sandbox_type {
     'sftp' : {
       @@backupninja::sandbox::sftp { $thehostname:
         thehostname => $thehostname,
-        sandboxuser => $backupninja::params::backup_user,
-        tag         => $backupninja::params::backup_server
+        sandboxuser => $backup_user,
+        tag         => $backup_server
       }
     }
   }
