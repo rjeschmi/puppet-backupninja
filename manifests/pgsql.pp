@@ -26,7 +26,7 @@ class backupninja::pgsql(
 
   $real_compress = str2bool($compress)   
 
-  file { "${configdir}/${order}_${name}.pgsql":
+  file { "${configdir}/${order}_puppet_backupninja.pgsql":
     ensure => $ensure,
     content => template('backupninja/pgsql.conf.erb'),
     owner => root,
