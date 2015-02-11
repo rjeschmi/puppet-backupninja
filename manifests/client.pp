@@ -1,7 +1,14 @@
 class backupninja::client (
   $duplicity_conf = undef,
-  $mysql_conf = undef,
-  ) inherits backupninja::params {
+  $mysql_conf     = undef,
+  $backup_server  = undef,
+  $backup_user    = "bn-${::hostname}${::uniqueid}",
+  $backupdir      = '/home/backupninja',
+  $configdir      = '/etc/backup.d',
+  $sandbox_type   = 'sftp',
+  $sftp_restricted_group = 'sftponly',
+
+  ) {
   
   Class['backupninja::client::package'] ->  Class['backupninja::client::config']
   Class['backupninja::client::config'] -> Class['backupninja::client::sshkeys'] 
