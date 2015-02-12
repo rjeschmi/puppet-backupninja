@@ -1,6 +1,6 @@
 class backupninja::server (
-  $sandbox_type = "sftp",     # only sftp supported right now
-  $sandbox_tag = undef,
+  $sandbox_type = "sftp",
+  $sandbox_tag = "blah",
   $backupdir = '/home/backupninja',
   ) {
 

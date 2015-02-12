@@ -17,9 +17,9 @@ define backupninja::sandbox::sftp (
 
   file { $homedir:
     ensure => directory,
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0755'
+    owner  => $sandboxuser,
+    group  => $restricted_group,
+    mode   => '0700'
   }
 
   file { "${homedir}/incoming":
@@ -32,15 +32,15 @@ define backupninja::sandbox::sftp (
 
   file { "${homedir}/.ssh":
     ensure => directory,
-    owner  => 'root',
+    owner  => $sandboxuser,
     group  => $restricted_group,
-    mode   => '0750',
+    mode   => '0700',
     require => File[$homedir]
   }
 
   file { "${homedir}/.ssh/authorized_keys":
     ensure => present,
-    owner  => 'root',
+    owner  => $sandboxuser,
     group  => $restricted_group,
     mode   => '0440',
     require => File["${homedir}/.ssh"]
@@ -48,7 +48,7 @@ define backupninja::sandbox::sftp (
 
   sshkeys::set_authorized_keys { $sandboxuser:
     keyname => $thehostname,
-    user    => 'root',
+    user    => $sandboxuser,
     home    => $homedir,
     require => File["${homedir}/.ssh/authorized_keys"]
   }
